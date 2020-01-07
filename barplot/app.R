@@ -21,7 +21,7 @@ ui <- fluidPage(theme = shinytheme("journal"),
                     
                     sidebarPanel( 
                         
-                        div(strong("A simple bar plot nothing more, nothing less."),p(" ")), 
+                        div(strong("A simple bar plot nothing more, nothing less."),p(" ")),    
                         
                         div(
                             
