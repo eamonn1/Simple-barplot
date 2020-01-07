@@ -38,7 +38,7 @@ ui <- fluidPage(theme = shinytheme("journal"),
                                   ")),
                             br(),
                             div(("  
-                                 The number of bars is chosen randomly from 7 to 30 and the counts from 1:2200.")),  
+                                 The number of bars is chosen randomly from 7 to 30 and the counts from 1:2200.")),   
                           
                             
                             
