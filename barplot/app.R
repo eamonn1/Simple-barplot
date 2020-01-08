@@ -4,7 +4,7 @@
 require(ggplot2)
 library(shiny) 
 options(max.print=1000000)
-fig.width <- 1200
+fig.width <- 1800
 fig.height <- 800
 library(shinythemes)        # more funky looking apps
 p1 <- function(x) {formatC(x, format="f", digits=1)}
@@ -14,66 +14,98 @@ set.seed(123)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ui <- fluidPage(theme = shinytheme("journal"),
                 
-                shinyUI(pageWithSidebar(
+                
+                # App title ----
+                titlePanel("Horizontal bar plot with counts and percentages"),
+                
+                
+                div(
                     
                     
-                    headerPanel("Horizontal bar plot with counts and percentages"),
                     
-                    sidebarPanel( 
-                        
-                        div(strong("A simple bar plot nothing more, nothing less."),p(" ")),    
-                        
-                        div(
-                            
-                         
-                            
-                            actionButton(inputId='ab1', label="R code",   icon = icon("th"),  
-                                         onclick ="window.open('https://raw.githubusercontent.com/eamonn2014/Simple-barplot/master/barplot/app.R', '_blank')"),   
-                            actionButton("resample", "Simulate a new sample"),
-                            br(), br(),
-                           
-                            
-                            
-                            div(("Hit 'Simulate a new sample' for a new bar plot.  
-                                  ")),
-                            br(),
-                            div(("  
-                                 The number of bars is chosen randomly from 7 to 30 and the counts from 1:2200.")),   
-                          
-                            
-                            
-                        )
-                    ),
+                    actionButton(inputId='ab1', label="R code",   icon = icon("th"),  
+                                 onclick ="window.open('https://raw.githubusercontent.com/eamonn2014/Simple-barplot/master/barplot/app.R', '_blank')"),   
+                    actionButton("resample", "Simulate a new sample"),
+                    br(),br(),
                     
+                    
+                    
+                    #div(("Hit 'Simulate a new sample' for a new bar plot.     
+                                  #")),
+                    # br(),
+                    # div(("  
+                    #             .")),   
+                    
+                    div(strong("A simple bar plot nothing more, nothing less. Hit 'Simulate a new sample' for a new bar plot.  The number of bars is chosen randomly from 7 to 30 and the counts from 1:2200 ")),    
+                    br(),
+                    
+                ),
+                
+                # Sidebar layout with input and output definitions ----
+               # div(p("Imagine you are using the result of a laboratory test as the primary endpoint in your RCT. Labor"))
+                
+                # shinyUI(pageWithSidebar(
+                #     
+                #     # 
+                #     # headerPanel("Horizontal bar plot with counts and percentages"),
+                #     
+                #        
+                #     
+                #     sidebarPanel( 
+                #         
+                #         div(strong("A simple bar plot nothing more, nothing less."),p(" ")),    
+                #         
+                #         div(
+                #             
+                #          
+                #             
+                #             actionButton(inputId='ab1', label="R code",   icon = icon("th"),  
+                #                          onclick ="window.open('https://raw.githubusercontent.com/eamonn2014/Simple-barplot/master/barplot/app.R', '_blank')"),   
+                #             actionButton("resample", "Simulate a new sample"),
+                #             br(), br(),
+                #            
+                #             
+                #             
+                #             div(("Hit 'Simulate a new sample' for a new bar plot.  
+                #                   ")),
+                #             br(),
+                #             div(("  
+                #                  The number of bars is chosen randomly from 7 to 30 and the counts from 1:2200.")),   
+                #           
+                #             
+                #             
+                #         )
+                #     ),
+                #     
                     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~tab panels
                     mainPanel(
                         
                         #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                         #    tabsetPanel(type = "tabs", 
-                        navbarPage(       
-                            #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-                            tags$style(HTML(" 
-                            .navbar-default .navbar-brand {color: cyan;}
-                            .navbar-default .navbar-brand:hover {color: blue;}
-                            .navbar { background-color: lightgrey;}
-                            .navbar-default .navbar-nav > li > a {color:black;}
-                            .navbar-default .navbar-nav > .active > a,
-                            .navbar-default .navbar-nav > .active > a:focus,
-                            .navbar-default .navbar-nav > .active > a:hover {color: pink;background-color: purple;}
-                            .navbar-default .navbar-nav > li > a:hover {color: black;background-color:yellow;text-decoration:underline;}
-                            .navbar-default .navbar-nav > li > a[data-value='t1'] {color: red;background-color: pink;}
-                            .navbar-default .navbar-nav > li > a[data-value='t2'] {color: blue;background-color: lightblue;}
-                            .navbar-default .navbar-nav > li > a[data-value='t3'] {color: green;background-color: lightgreen;}
-                   ")), 
+                   #      navbarPage(       
+                   #          #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+                   #          tags$style(HTML(" 
+                   #          .navbar-default .navbar-brand {color: cyan;}
+                   #          .navbar-default .navbar-brand:hover {color: blue;}
+                   #          .navbar { background-color: lightgrey;}
+                   #          .navbar-default .navbar-nav > li > a {color:black;}
+                   #          .navbar-default .navbar-nav > .active > a,
+                   #          .navbar-default .navbar-nav > .active > a:focus,
+                   #          .navbar-default .navbar-nav > .active > a:hover {color: pink;background-color: purple;}
+                   #          .navbar-default .navbar-nav > li > a:hover {color: black;background-color:yellow;text-decoration:underline;}
+                   #          .navbar-default .navbar-nav > li > a[data-value='t1'] {color: red;background-color: pink;}
+                   #          .navbar-default .navbar-nav > li > a[data-value='t2'] {color: blue;background-color: lightblue;}
+                   #          .navbar-default .navbar-nav > li > a[data-value='t3'] {color: green;background-color: lightgreen;}
+                   # ")), 
                             #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~end of section to add colour     
-                            tabPanel("Horizontal bar plot with counts and percentages", 
+                           # tabPanel("Horizontal bar plot with counts and percentages", 
                                      
                                      div(plotOutput("reg.plot", width=fig.width, height=fig.height)),  
                                      
-                                    p(strong("")) ,
+                                    p(strong("")) 
                              
                                      
-                            ) 
+                            #) 
                             
                      
                         )
@@ -82,9 +114,9 @@ ui <- fluidPage(theme = shinytheme("journal"),
                     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~end tab panels
                     
                     #  ) #new
-                )
-                )
-)
+                #)
+            
+
 
 server <- shinyServer(function(input, output) {
     
