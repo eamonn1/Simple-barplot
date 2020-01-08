@@ -5,7 +5,7 @@ require(ggplot2)
 library(shiny) 
 options(max.print=1000000)
 fig.width <- 1800
-fig.height <- 800
+fig.height <- 780
 library(shinythemes)        # more funky looking apps
 p1 <- function(x) {formatC(x, format="f", digits=1)}
 p2 <- function(x) {formatC(x, format="f", digits=2)}
