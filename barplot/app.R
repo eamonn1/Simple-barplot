@@ -201,7 +201,7 @@ server <- shinyServer(function(input, output) {
             
             p1 <- p1 + geom_text(aes(label=paste0(format(N, big.mark=","
                                                          ,scientific=FALSE)," (",Percentage,"%)")),position = "stack", 
-                                 hjust=-0.2, size = 3, check_overlap = F)
+                                 hjust=-0.2, size = 4.2, check_overlap = F)
             
             p1 <- p1 + scale_y_continuous(limits = c(0, mlimit)) 
             
