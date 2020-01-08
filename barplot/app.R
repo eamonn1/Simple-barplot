@@ -5,7 +5,7 @@ require(ggplot2)
 library(shiny) 
 options(max.print=1000000)
 fig.width <- 1200
-fig.height <- 850
+fig.height <- 800
 library(shinythemes)        # more funky looking apps
 p1 <- function(x) {formatC(x, format="f", digits=1)}
 p2 <- function(x) {formatC(x, format="f", digits=2)}
@@ -164,6 +164,8 @@ server <- shinyServer(function(input, output) {
         z <- f  # data set for plot
         variable <- "what"  # variable of interest
         pN <- sum(z$N)  # 
+        pN <- format(pN, big.mark=","
+                      ,scientific=FALSE)
         roundUp <- function(x) 10^ceiling(log10(x))/4
         gupper <- roundUp((max(z$N)))  # plot upper limit
         glower <- 250                  # plot lower limit
@@ -186,12 +188,12 @@ server <- shinyServer(function(input, output) {
                 geom_bar(stat = "identity", width =0.7) 
             
             
-            p1 <- p1 + ggtitle( "Horizontal bar plot with counts and percentages" ) +
+            p1 <- p1 + ggtitle( paste("Horizontal bar plot with counts and percentages, N =",pN), ) +
                 theme(plot.title = element_text(size = 20, face = "bold")) +
                 
                 coord_flip()
             
-            p1 <- p1 + ylab(ylabel) + 
+            p1 <- p1 + ylab(ylabel ) + 
                 
                 xlab(" ") +
                 
@@ -207,10 +209,11 @@ server <- shinyServer(function(input, output) {
                              plot.title=element_text(), plot.margin = unit(c(5.5,12,5.5,5.5), "pt"), 
                              legend.text=element_text(size=12),
                              legend.title=element_text(size=14),
-                             axis.text.x = element_text(size=11),
-                             axis.text.y = element_text(size=11),
+                             axis.text.x = element_text(size=13),
+                             axis.text.y = element_text(size=15),
                              axis.line.x = element_line(color="black"),
                              axis.line.y = element_line(color="black"),
+                             axis.title = element_text(size = 20) , 
                              plot.caption=element_text(hjust = 0, size = 7))
             
             g <- p1 + theme(legend.position="none")
